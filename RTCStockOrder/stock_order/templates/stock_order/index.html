@@ -1,0 +1,16 @@
+
+{% extends 'stock_order/base.html' %}
+
+{% block body%}
+<div class="container">
+    <div class = "col-md-12">
+        <div class="text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            {% for page in all_pages %}
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href ='{% url 'index' %}{{page}}'">{{page}}</button>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

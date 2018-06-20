@@ -1,0 +1,98 @@
+{% extends 'stock_order/base.html' %}
+
+{% block body%}
+
+<!-- TODO input verification.  i.e. select an item and add volume -->
+
+    <h1>RTC Unit - Stock Ordering</h1>
+
+
+    <div class="container-fluid">
+
+        <div class="row no-gutters">
+        {% for washers in all_washers %}
+            <div class="col-sm" style="margin-bottom:40px">
+                 <ul class="listgroup">
+                     <li class="list-group-item disabled list-group-item-primary">{{ washers }}
+                         <div class="text-right"><button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal{{washers}}">
+                             <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                         </div>
+                     </li>
+                     {% for queue in all_queues %}
+                     {% if queue.washer|stringformat:"s" == washers|stringformat:"s" %}
+
+                    <li class="list-group-item list-group-item-info">{{ queue.product }}: {{queue.volume}}kg
+
+                        <span class="pull-right">
+                        <span class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></span>
+                        </span>
+                     {% endif %}
+
+                     {% endfor %}
+
+                </ul>
+            </div>
+
+
+
+            <!-- Modal -->
+<div id="myModal{{washers}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <h3 class="modal-title">Add item to {{washers}}</h3>
+      </div>
+      <div class="modal-body">
+
+          <div class="btn-group-vertical">
+              {% for product in all_products %}
+                <button type="button" class="test-button btn btn-lg" onclick="getText(this.value, '{{washers}}')" value="{{product}}">{{product}}</button>
+              {% endfor %}
+        </div>
+
+          <div class="modal-body">
+              <form action = "/stock_order/rtc_unit/" method="POST">
+                  {% csrf_token %}
+                  <label for="label{{washers}}">Selected: </label>
+                  <label id="label{{washers}}">None</label>
+                  <input type="hidden" id="label2{{washers}}" name ="product", value="">
+                  <input type="hidden" name="washer" value = "{{washers}}">
+                  <div class="form-group modal-body">
+                  <label for="volume">Volume (kg):</label>
+                      <input name = "volume" type="integer" class="form-control" id="volume">
+                  </div>
+          </div>
+          <input type="submit" class="btn btn-success btn-lg" value="Add" />
+      </div>
+        </form>
+    </div>
+
+
+
+
+
+
+  </div>
+</div>
+{% endfor %}
+        </div>
+    </div>
+
+<script>
+function getText(obj, washer){
+
+        let lbl = document.getElementById("label"+washer);
+        let setText = obj;
+
+        let lbl2 = document.getElementById("label2"+washer);
+
+
+        lbl.innerHTML = obj;
+        lbl2.value = obj;
+    }
+</script>
+
+{% endblock %}
