@@ -7,7 +7,7 @@
         <div class="text-center">
         <div class="btn-group" role="group" aria-label="Basic example">
             {% for page in all_pages %}
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href ='{% url 'index' %}{{page}}'">{{page}}</button>
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href ='{% url 'index' %}{{page}}'"  style="font-size:30px;">{{page}}</button>
             {% endfor %}
         </div>
         </div>
