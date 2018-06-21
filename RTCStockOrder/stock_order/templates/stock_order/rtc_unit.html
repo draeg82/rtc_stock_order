@@ -3,8 +3,9 @@
 {% block body%}
 
 <!-- TODO input verification.  i.e. select an item and add volume -->
-
-    <h1 class="text-light">RTC Unit - Stock Ordering </h1>
+    <br>
+    <h2 class="text-light text-center ">RTC Unit - Stock Ordering </h2>
+    <br>
 
 
     <div class="container-fluid">
@@ -13,7 +14,7 @@
         {% for washers in all_washers %}
             <div class="col-sm" style="margin-bottom:40px">
                  <ul class="listgroup">
-                     <li class="list-group-item disabled list-group-item-primary">{{ washers }}
+                     <li class="list-group-item disabled list-group-item-primary ">{{ washers }}
                          <div class="text-right"><button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal{{washers}}">
                              <span class="glyphicon glyphicon-plus"></span>
                         </button>
@@ -22,7 +23,7 @@
                      {% for queue in all_queues %}
                      {% if queue.washer|stringformat:"s" == washers|stringformat:"s" %}
 
-                    <li class="list-group-item list-group-item-info">{{ queue.product }}: {{queue.volume}}kg
+                    <li class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">{{ queue.product }}: {{queue.volume}}kg
 
                         <span class="pull-right">
                         <span class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></span>

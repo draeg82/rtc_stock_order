@@ -5,11 +5,11 @@
 <div class="container">
     <div class = "col-md-12">
         <div class="text-center">
-        <div class="btn-group" role="group" aria-label="Basic example">
+            <br><br>
             {% for page in all_pages %}
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href ='{% url 'index' %}{{page}}'"  style="font-size:30px;">{{page}}</button>
+                <button type="button" class="btn btn-dark btn-lg" onclick="location.href ='{% url 'index' %}{{page}}'"  style="font-size:30px;">{{page|make_readable}}</button>
             {% endfor %}
-        </div>
+
         </div>
     </div>
 </div>
