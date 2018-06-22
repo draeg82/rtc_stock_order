@@ -9,6 +9,7 @@ def index(request):
     context = {'all_pages': tempList}
     return render(request, 'stock_order/index.html', context)
 
+
 def rtc_unit(request):
     if request.method == 'POST':
         queue = WasherQueue()
@@ -19,7 +20,6 @@ def rtc_unit(request):
 
         return HttpResponseRedirect('/stock_order/rtc_unit/')
 
-
     washer = Washer.objects.all()
     products = Product.objects.all()
     queues = WasherQueue.objects.all()
@@ -27,8 +27,15 @@ def rtc_unit(request):
 
     return render(request, 'stock_order/rtc_unit.html', context)
 
+
 def prep_1(request):
     return (HttpResponse("<h2>Prep 1</h2>"))
 
 
+def deleteFromWashQueue(request):
 
+    if request.method == 'POST':
+        queue_id = request.POST.get("itemForDeletePK", "")
+        itemToDelete = WasherQueue.objects.get(pk=queue_id)
+        itemToDelete.delete()
+        return HttpResponseRedirect('/stock_order/rtc_unit/')

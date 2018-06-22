@@ -25,7 +25,8 @@ SECRET_KEY = '0jmp94-fpfy*z!k%r0acpcksogy2)9ttt$e+g$p$9nhngzq=1c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.kingdogstudio.com',
+                 '127.0.0.1']
 
 
 # Application definition

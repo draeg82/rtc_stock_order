@@ -15,6 +15,7 @@
             <div class="col-sm" style="margin-bottom:40px">
                  <ul class="listgroup">
                      <li class="list-group-item disabled list-group-item-primary ">{{ washers }}
+
                          <div class="text-right"><button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal{{washers}}">
                              <span class="glyphicon glyphicon-plus"></span>
                         </button>
@@ -25,9 +26,12 @@
 
                     <li class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">{{ queue.product }}: {{queue.volume}}kg
 
-                        <span class="pull-right">
-                        <span class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></span>
-                        </span>
+                    <span class="pull-right">
+                    <form action = "{% url 'deleteQueueItem' %}" method="POST">
+                     {% csrf_token %}
+                    <button class="btn btn-danger" name="itemForDeletePK" value="{{queue.pk}}"><span class="glyphicon glyphicon-trash"></span></button>
+                    </form>
+                    </span>
                      {% endif %}
 
                      {% endfor %}
