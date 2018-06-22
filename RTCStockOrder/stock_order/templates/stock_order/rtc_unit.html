@@ -14,7 +14,7 @@
 		{% for washers in all_washers %}
 			<div class="col-sm" style="margin-bottom:40px">
 				 <ul class="listgroup">
-					 <li class="list-group-item disabled list-group-item-primary ">{{ washers }}
+					 <li class="list-group-item disabled list-group-item-primary border-bottom border-secondary">{{ washers }}
 
 						 <div class="text-right"><button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal{{washers}}">
 							 <span class="glyphicon glyphicon-plus"></span>
@@ -24,20 +24,37 @@
 					 {% for queue in all_queues %}
 					 {% if queue.washer|stringformat:"s" == washers|stringformat:"s" %}
 
-					<li class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">{{ queue.product }}: {{queue.volume}}kg
-
-					<span class="pull-right">
-					<form action = "{% url 'deleteQueueItem' %}" method="POST">
+                    <div class="panel panel-default bg-light border-top border-right border-left border-secondary">
+                        <div class="panel-header text-center"><h2>{{ queue.product }}</h2></div>
+                        <div class="panel-content text-center"><h3>{{queue.volume}} kg</h3></div><br>
+                     <div class="panel-footer text-center">
+                            <div class="btn-group">
+                        <form action = "{% url 'moveQueueItemUp' %}" method="POST">&nbsp
 					 {% csrf_token %}
-					<button class="btn btn-danger" name="itemForDeletePK" value="{{queue.pk}}"><span class="glyphicon glyphicon-trash"></span></button>
+					<button class="btn btn-info" name="moveUp" value="{{queue.pk}}"><span class="glyphicon glyphicon-arrow-up"></span></button>
 					</form>
-					</span>
+					<form action = "{% url 'deleteQueueItem' %}" method="POST">&nbsp
+					 {% csrf_token %}
+					<button class="btn btn-success" name="itemForDeletePK" value="{{queue.pk}}"><span class="glyphicon glyphicon-ok"></span></button>
+					</form>
+                        <form action = "{% url 'moveQueueItemDown' %}" method="POST">&nbsp
+					 {% csrf_token %}
+					<button class="btn btn-info" name="moveDown" value="{{queue.pk}}"><span class="glyphicon glyphicon-arrow-down"></span></button>
+					</form>
+
+					</div>
+                         <br><br>
+                        </div>
+                    </div>
+
+
+
 					 {% endif %}
 
 					 {% endfor %}
 
 				</ul>
-			</div>
+            </div>
 
 
 

@@ -12,7 +12,13 @@ urlpatterns = [
     url(r'^prep_1/', views.prep_1, name='prep_1'),
 
     #/stock_order/deletequeueitem
-    url(r'deletequeueitem/', views.deleteFromWashQueue, name='deleteQueueItem')
+    url(r'deletequeueitem/', views.deleteFromWashQueue, name='deleteQueueItem'),
+
+    # /stock_order/moveQueueItemUp
+    url(r'moveQueueItemUp/', views.moveQueueItemUp, name='moveQueueItemUp'),
+
+    # /stock_order/moveQueueItemDown
+    url(r'moveQueueItemDown/', views.moveQueueItemDown, name='moveQueueItemDown')
 
 ]
 

@@ -39,3 +39,19 @@ def deleteFromWashQueue(request):
         itemToDelete = WasherQueue.objects.get(pk=queue_id)
         itemToDelete.delete()
         return HttpResponseRedirect('/stock_order/rtc_unit/')
+
+def moveQueueItemUp(request):
+
+    if request.method == 'POST':
+        queue_id = request.POST.get("moveUp", "")
+        itemToMove = WasherQueue.objects.get(pk=queue_id)
+        itemToMove.up()
+        return HttpResponseRedirect('/stock_order/rtc_unit/')
+
+def moveQueueItemDown(request):
+
+    if request.method == 'POST':
+        queue_id = request.POST.get("moveDown", "")
+        itemToMove = WasherQueue.objects.get(pk=queue_id)
+        itemToMove.down()
+        return HttpResponseRedirect('/stock_order/rtc_unit/')
