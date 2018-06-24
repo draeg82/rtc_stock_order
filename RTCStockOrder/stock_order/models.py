@@ -21,6 +21,7 @@ class Washer(OrderedModel):
 class Product(OrderedModel):
     product = models.CharField(max_length=30)
     productType = models.CharField(max_length=30)
+    order_with_respect_to = 'product'
 
     def __str__(self):
         return self.product + ' - ' + self.productType
@@ -33,7 +34,8 @@ class Product(OrderedModel):
 class WasherQueue(OrderedModel):
     washer = models.CharField(max_length=30)
     product = models.CharField(max_length=60)
-    volume = models.CharField(max_length=10)
+    volume = models.CharField(max_length=5)
+    order_with_respect_to = 'washer'
 
     def __str__(self):
         return self.washer + ': ' + self.product + ' - ' + self.volume
