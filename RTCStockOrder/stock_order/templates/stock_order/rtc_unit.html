@@ -69,10 +69,20 @@
 	  </div>
 	  <div class="modal-body">
 
-		  <div class="btn-group-vertical">
-			  {% for product in all_products %}
-				<button type="button" class="test-button btn btn-lg" onclick="getText(this.value, '{{washers}}')" value="{{product}}">{{product}}</button>
-			  {% endfor %}
+		  <div class="btn-group-vertical col-md-12">
+              {% for unique in unique_products %}
+              <a class="btn btn-success btn-lg" data-toggle="collapse" href ="#collapse_{{unique}}" role="button" aria-expanded="false" aria-controls="collapse_{{unique}}">{{unique}}</a>
+			      <div class="collapse" style="width: 100%;" id ="collapse_{{unique}}">
+              {% for product in all_products %}
+
+              {% if product.product|stringformat:"s" == unique|stringformat:"s" %}
+
+                 <button type="button" class="btn btn-lg btn-outline-success col-12" onclick="getText(this.value, '{{washers}}')" value="{{product}}">{{product}}</button>
+
+                {% endif %}
+              {% endfor %}
+                       </div>
+              {% endfor %}
 		</div>
 
 		  <div class="modal-body">

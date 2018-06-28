@@ -23,7 +23,8 @@ def rtc_unit(request):
     washer = Washer.objects.all()
     products = Product.objects.all()
     queues = WasherQueue.objects.all()
-    context = {'all_washers': washer, 'all_products': products, 'all_queues': queues}
+    unique_products = Product.objects.order_by().values_list('product', flat=True).distinct()
+    context = {'all_washers': washer, 'all_products': products, 'all_queues': queues, 'unique_products':unique_products}
 
     return render(request, 'stock_order/rtc_unit.html', context)
 
