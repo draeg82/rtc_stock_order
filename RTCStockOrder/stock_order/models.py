@@ -5,7 +5,7 @@ class Item(OrderedModel):
     name = models.CharField(max_length=100)
 
     class Meta(OrderedModel.Meta):
-        pass
+      pass
 
 
 class Washer(OrderedModel):
@@ -27,7 +27,7 @@ class Product(OrderedModel):
         return self.product + ' - ' + self.productType
 
     class Meta(OrderedModel.Meta):
-        pass
+        ordering = ['product', 'productType']
 
 
 

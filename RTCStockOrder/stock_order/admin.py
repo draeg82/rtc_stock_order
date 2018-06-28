@@ -9,7 +9,7 @@ class ProductAdmin(OrderedModelAdmin):
     list_display = ('product', 'productType','move_up_down_links')
 
 class WasherQueueAdmin(OrderedModelAdmin):
-    list_display = ('washer', 'product', 'volume', 'move_up_down_links')
+    list_display = ('washer', 'product', 'volume')
 
 # Register your models here.
 admin.site.register(Washer, WasherAdmin)
